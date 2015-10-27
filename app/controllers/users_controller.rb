@@ -8,11 +8,11 @@ class UsersController < ApplicationController
 
   def edit
   end
-  
+
   def create
     @user = User.new(params_users)
-    if @user.save
-      begin 
+    if verify_recaptcha(:User => @user, :message => "Oh shit men!") && @user.save
+      begin
         ConfirmationMailer.confirm_email("#{@user.email}", @user.activation_token).deliver
         rescue
           flash[:notice] = "Activation instruction fails send your email"
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         render action: 'new'
       end
   end
-  
+
   private
   def params_users
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :humanizer_answer, :humanizer_question_id)
