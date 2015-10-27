@@ -1,0 +1,28 @@
+<%= form_for @article do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+    	<h1><%= pluralize(@article.errors.count, "error wooyyy")%> prohibited this classroom from being saved: </h1>
+    	<ul>
+    		<% @article.errors.full_messages.each do |message| %>
+    		  <li><%= message %></li>
+    		<% end %>
+    	</ul>
+    	</div>
+    	<% end %>
+<%= f.label :title %><br />
+<%= f.text_field :title %>
+<%= @article.errors[:title] = "Sorry, title can't be blank bro " unless @article.errors[:title].blank? %>
+<br />
+<%= f.label :content %><br />
+<%= f.text_area :content, cols: 30, rows: 2 %>
+<%= @article.errors[:content].first unless @article.errors[:content].blank?%>
+<br />
+<%= f.label :status %><br />
+<%= f.radio_button :status, "active"%>
+<%= f.label :status, "active" %>
+<%= f.radio_button :status, "off"%>
+<%= f.label :status, "off"%>
+<br />
+<%= f.submit "Create Article", class: "btn btn-success" %>
+
+<% end %>  

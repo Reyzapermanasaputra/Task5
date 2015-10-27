@@ -1,0 +1,14 @@
+<% @articles.each do |article| %>
+  <h2><%= article.title.upcase %></h2>
+  <p>
+  	<%= article.content.truncate(20) %>
+  	<%= link_to "Read more", article%>
+  </p>
+  <p><%= article.content %></p>
+  <h4><%= article.status %></h4>
+  <span><%= link_to "Edit article", edit_article_path(article) if current_user %></span>
+  <span> | </span>
+  <span><%= link_to "Destroy", article_path(article), method: "DELETE", data: {confirm: 'delete data ?'} if current_user%></span>
+  <hr />
+<% end %>
+ <span><%= link_to "new article", new_article_path(@article), class: "btn btn-primary" if current_user%></span>

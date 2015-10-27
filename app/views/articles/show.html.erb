@@ -1,0 +1,13 @@
+<h1><%= @article.title %></h1>
+<p><%= @article.content %></p>
+<p><%= link_to "Back to index", articles_path%>
+	
+<div id="form-comment">
+  <%= render 'form' %>
+</div>
+
+<h4>Here the comments</h4>	
+
+<div id="list-comments">
+	<%= render 'comments'%>
+</div>
