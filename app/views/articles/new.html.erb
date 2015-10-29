@@ -1,7 +1,7 @@
-<%= form_for @article do |f| %>
+<%= form_for @article, :html => { :multipart => true } do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
-    	<h1><%= pluralize(@article.errors.count, "error wooyyy")%> prohibited this classroom from being saved: </h1>
+    	<h1><%= pluralize(@article.errors.count, "error bro")%> prohibited this article from being saved: </h1>
     	<ul>
     		<% @article.errors.full_messages.each do |message| %>
     		  <li><%= message %></li>
@@ -16,6 +16,9 @@
 <%= f.label :content %><br />
 <%= f.text_area :content, cols: 30, rows: 2 %>
 <%= @article.errors[:content].first unless @article.errors[:content].blank?%>
+<br />
+<%= f.label :avatar, "add Avatar"%>
+<%= f.file_field :avatar %>
 <br />
 <%= f.label :status %><br />
 <%= f.radio_button :status, "active"%>

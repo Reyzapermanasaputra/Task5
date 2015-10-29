@@ -11,6 +11,9 @@
  * file per style scope.
  *
  *= require bootstrap
+ *= require component
+ *= require default
+ *= require 'masonry/transitions'
  *= require_tree .
  *= require_self
  */
@@ -37,3 +40,16 @@ body {
 .navbar-custom .navbar-brand {
 	color: #eeeeee;
 }
+#masonry-container {
+	background: #fff;
+	padding: 5px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	float: left;
+	-webkit-border-radius: 5px;
+	  -moz-border-radius: 5px;
+	    border-radius: 5px;
+}
+.clearfix:before, .clearfix:after {content: ""; display: table; }
+.clearfix:after {clear: both; }
+.clearfix {zoom: 1; }

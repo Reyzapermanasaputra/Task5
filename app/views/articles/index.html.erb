@@ -1,14 +1,42 @@
-<% @articles.each do |article| %>
-  <h2><%= article.title.upcase %></h2>
-  <p>
-  	<%= article.content.truncate(20) %>
-  	<%= link_to "Read more", article%>
-  </p>
-  <p><%= article.content %></p>
-  <h4><%= article.status %></h4>
-  <span><%= link_to "Edit article", edit_article_path(article) if current_user %></span>
-  <span> | </span>
-  <span><%= link_to "Destroy", article_path(article), method: "DELETE", data: {confirm: 'delete data ?'} if current_user%></span>
-  <hr />
-<% end %>
- <span><%= link_to "new article", new_article_path(@article), class: "btn btn-primary" if current_user%></span>
+<div class="container">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+			</div>
+			<header>
+				<h1>Index of Article <span>Author by Reyza Permana Saputra</span></h1>
+				<span><%= link_to "new article", new_article_path(@article), class: "btn btn-primary btn-lg" if current_user%></span>	
+				<%= page_entries_info @articles %>	
+			</header>
+			<ul class="grid effect-1" id="grid">
+				<% @articles.each do |article| %>
+                  <li>
+                  	<a href="#">
+                  		<div class="row">
+                          <div class="col-md-12">
+                            <div class="thumbnail">
+                            <%= image_tag article.avatar.url %>
+                              <div class="caption">
+                                <h3><%= article.title.upcase %></h3>
+                                <p>
+  	                              <%= article.content.truncate(100) %>
+  	                              <div class="text-right"><%= link_to "Read more", article%></div>
+                                </p>
+                                <h5><%= article.status %></h5>
+                                <p><span><%= link_to "Edit article", edit_article_path(article) if current_user %></span>  <span><%= link_to "Destroy", article_path(article), method: "DELETE", data: {confirm: 'delete data ?'} if current_user%></span></p>
+                              </div>
+                           </div>
+                         </div>
+                       </div>
+                    </a>
+                  </li>
+                  <% end %>
+			</ul>
+		</div>
+		<%= paginate @articles %>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>

@@ -1,36 +1,21 @@
- <%= form_for @article do |f| %>
-
-<%= f.label :title %>
-
-<%= f.text_field :title %>
-
-<br/>
-
-<%= f.label :content %>
-
-<%= f.text_area :content, cols: 20, rows: 10 %>
-
-<br/>
-
-<%= f.label :status %>
-
-<%= f.radio_button :status, "active" %>
-
-<%= label :article_status, 'active' %>
-
-<%= f.radio_button :status, "off" %>
-
-<%= label :article_status, 'off' %>
-
-<br/>
-
+<%= form_for @article, :html => {:multipart => true} do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br/>
+  <%= f.label :content %>
+  <%= f.text_area :content, cols: 20, rows: 10 %>
+  <br/>
+  <%= f.label :avatar, "Edit avatar" %>
+  <%= f.file_field :avatar %>
+  <%= %>
+  <%= f.label :status %>
+  <%= f.radio_button :status, "active" %>
+  <%= label :article_status, 'active' %>
+  <%= f.radio_button :status, "off" %>
+  <%= label :article_status, 'off' %>
+  <br/>
 <%= f.submit :submit %>
-
 <% end %>
-
-
-<div>
-
-<%= link_to "back to index", articles_path %>
-
-</div>
+  <div>
+    <%= link_to "back to index", articles_path %>
+  </div>

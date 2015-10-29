@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 before_action :check_current_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @articles = Article.status_active.order("id desc")
+    @articles = Article.status_active.order("id desc").page(params[:page]).per(5)
   end
 
   def new
@@ -20,7 +20,7 @@ before_action :check_current_user, only: [:new, :create, :edit, :update, :destro
   end
   
   def create
-    @article = Article.new(params_articles)
+    @article = Article.new(params_article)
     if @article.save
       flash[:notice] = "successfully"
       redirect_to action: 'index'
@@ -32,7 +32,7 @@ before_action :check_current_user, only: [:new, :create, :edit, :update, :destro
 
   def update
     @article = Article.find_by_id(params[:id])
-    if @article.update(params_articles)
+    if @article.update(params_article)
       flash[:notice] = "your data is update"
       redirect_to action: 'index'
     else
@@ -48,7 +48,7 @@ before_action :check_current_user, only: [:new, :create, :edit, :update, :destro
   
   private
   
-  def params_articles
-    params.require(:article).permit(:title, :content, :status)    
+  def params_article
+    params.require(:article).permit(:title, :content, :status, :avatar)    
   end
 end

@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+#gem kaminari
+gem 'kaminari'
+#gem masonry
+gem 'masonry-rails'
+#gem paperclip
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 #gem bycript
 gem 'bcrypt', '~> 3.1.7'
 #gem recaptcha

@@ -1,7 +1,8 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
+<p><%= image_tag @article.avatar.url(:medium) %>
 <p><%= link_to "Back to index", articles_path%>
-	
+
 <div id="form-comment">
   <%= render 'form' %>
 </div>
@@ -11,3 +12,13 @@
 <div id="list-comments">
 	<%= render 'comments'%>
 </div>
+<script>
+$('.grid').masonry({
+  // set itemSelector so .grid-sizer is not used in layout
+  itemSelector: '.grid-item',
+  // use element for option
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+})
+
+</script>
