@@ -11,24 +11,7 @@ class Article < ActiveRecord::Base
   
   scope :status_active, -> {where(status: 'active')}
   
-  def self.import_data(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    spreadsheet.sheets.each_with_index do |name, shit|
-    spreadsheet.default_sheet = spreadsheet.sheets[shit]
-    #debugger
-     #spreadsheet.default_sheet = spreadsheet.sheets.last 
-      (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      article = find_by_title(row["title"]) || new
-      parameters = ActionController::Parameters.new(row.to_hash)
-      article.update_attributes(parameters.permit(:title, :content, :status, :comments_attributes => [:article_id, :content])) 
-      end
-    end
-  end
-  
- 
-  def self.import(file)
+ def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
