@@ -3,8 +3,15 @@
 			<div class="codrops-top clearfix">
 			</div>
 			<header>
-				<h1>Index of Article <span>Author by Reyza Permana Saputra</span></h1>
+				<h1>Listing Articles</h1>
+				<h1><span>Please login before you do any action</span></h1>
 				<span><%= link_to "new article", new_article_path(@article), class: "btn btn-primary btn-lg" if current_user%></span>	
+			    <span><%= link_to "Report Article", report_path, class: "btn btn-success btn-lg" if current_user%></span>
+				<h1><span>Import Image</span></h1>
+				<%= form_tag import_articles_path, multipart: true do %>
+				  <%= file_field_tag :file, class: "btn btn-primary", required: true %>
+				  <%= submit_tag "Import", class: "btn btn-default" %>
+				<% end %>
 				<%= page_entries_info @articles %>	
 			</header>
 			<ul class="grid effect-1" id="grid">
@@ -16,9 +23,9 @@
                             <div class="thumbnail">
                             <%= image_tag article.avatar.url %>
                               <div class="caption">
-                                <h3><%= article.title.upcase %></h3>
+                                <h3><%= article.title %></h3>
                                 <p>
-  	                              <%= article.content.truncate(100) %>
+  	                              <%= article.content  %>
   	                              <div class="text-right"><%= link_to "Read more", article%></div>
                                 </p>
                                 <h5><%= article.status %></h5>

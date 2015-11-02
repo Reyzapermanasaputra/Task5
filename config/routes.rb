@@ -2,9 +2,13 @@ Rails.application.routes.draw do
 
   get 'sign_up' => "users#new", :as => "sign_up"
   get 'sign_in' => "sessions#new", :as => "sign_in"
+  get 'report' => "articles#report", :as => "report" , :defaults => {format: 'xlsx'}
+  get 'articles/:id/report_with_comments' => "articles#report_with_comments", :as => "report_with_comments" , :defaults => {format: 'xlsx'}
   resources :users
   root to: 'articles#index'
-  resources :articles
+  resources :articles do 
+    collection {post :import }
+  end
   resources :comments
   resources :sessions
   # The priority is based upon order of creation: first created -> highest priority.

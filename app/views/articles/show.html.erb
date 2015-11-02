@@ -1,8 +1,8 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
-<p><%= image_tag @article.avatar.url(:medium) %>
-<p><%= link_to "Back to index", articles_path%>
-
+<p><%= image_tag @article.avatar.url(:medium) %></p>
+<p><%= link_to "Back to index", articles_path, class: "btn btn-danger"%></p>
+<p><%= link_to "Report with comments", report_with_comments_path, class: "btn btn-success btn-lg"%></p>
 <div id="form-comment">
   <%= render 'form' %>
 </div>

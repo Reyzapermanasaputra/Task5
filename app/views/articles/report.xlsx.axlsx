@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+border = s.add_style :border => { :style => :thick, :color =>"000000"}
+wb.add_worksheet(name: "Article") do |sheet|
+  sheet.add_row %w(title, content, status), :b => true, :style => border
+  @articles.each do |article|
+    sheet.add_row [article.title, article.content, article.status]
+  end
+end
+ends

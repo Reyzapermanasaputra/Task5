@@ -1,16 +1,20 @@
 source 'https://rubygems.org'
 
-#gem kaminari
+#gem import excel roo
+gem 'roo'
+#gem export to excel xlssxs
+gem 'axlsx_rails'
+#gem pagination kaminari
 gem 'kaminari'
-#gem masonry
+#gem masonry like pinterest
 gem 'masonry-rails'
-#gem paperclip
+#gem paperclip for image
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-#gem bycript
+#gem bycript for generate password security 
 gem 'bcrypt', '~> 3.1.7'
-#gem recaptcha
+#gem recaptcha for Goggle recaptcha
 gem "recaptcha", :require => "recaptcha/rails"
-#gem humanizer
+#gem humanizer for bad recaptcha
 gem 'humanizer'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
